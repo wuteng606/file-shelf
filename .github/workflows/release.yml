@@ -60,6 +60,23 @@ jobs:
           # 只出 NSIS 安装包（exe）；想同时出 MSI 改成 --bundles nsis,msi
           args: --bundles nsis
 
+      - name: Restore product name in asset filenames
+        # tauri-action 会把非 ASCII 的产品名从资产文件名里剥离，留下一个前导下划线，
+        # 这里通过 API 把名字改回来
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          REPO="${{ github.repository }}"
+          TAG="v$(node -p "require('./src-tauri/tauri.conf.json').version")"
+          gh api "repos/$REPO/releases/tags/$TAG" \
+            --jq '.assets[] | select(.name|startswith("_")) | "\(.id)\t\(.name)"' |
+          while IFS=$'\t' read -r id name; do
+            [ -z "$id" ] && continue
+            gh api -X PATCH "repos/$REPO/releases/assets/$id" -f "name=暂存架${name}" > /dev/null
+            echo "$name -> 暂存架$name"
+          done
+
   macos:
     name: Build macOS app (universal)
     runs-on: macos-latest
@@ -110,3 +127,20 @@ jobs:
           prerelease: false
           # 通用二进制 + 配置里的 app/dmg 产物
           args: --target universal-apple-darwin
+
+      - name: Restore product name in asset filenames
+        # tauri-action 会把非 ASCII 的产品名从资产文件名里剥离，留下一个前导下划线，
+        # 这里通过 API 把名字改回来
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          REPO="${{ github.repository }}"
+          TAG="v$(node -p "require('./src-tauri/tauri.conf.json').version")"
+          gh api "repos/$REPO/releases/tags/$TAG" \
+            --jq '.assets[] | select(.name|startswith("_")) | "\(.id)\t\(.name)"' |
+          while IFS=$'\t' read -r id name; do
+            [ -z "$id" ] && continue
+            gh api -X PATCH "repos/$REPO/releases/assets/$id" -f "name=暂存架${name}" > /dev/null
+            echo "$name -> 暂存架$name"
+          done
