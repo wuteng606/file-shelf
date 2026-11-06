@@ -97,7 +97,8 @@ Tauri 2 · Rust 1.89 · 原生 TypeScript（Vite，无框架）· `tauri-plugin-
 > 这也是 Spotlight / Raycast 那一类面板的做法：`NonactivatingPanel` + `CanJoinAllSpaces | FullScreenAuxiliary`，
 > 层级抬到 `NSPopUpMenuWindowLevel`。另外显示时绝不能调 `set_focus()`，它会激活 App、把当前全屏 Space 顶掉。
 >
-> 托盘图标用的是 macOS **模板图**（纯黑 + alpha），系统按菜单栏明暗自动反色，和系统图标同一套视觉语言。
+> 托盘图标是品牌橙色的「文件 + 搁板」图形（透明底，`icons/tray-color.png`），和 App 图标同一套形状；
+> `icons/tray-template.png` 是备用的单色模板图，想换成随菜单栏反色的原生风格时把 `icon_as_template(true)` 打开即可。
 > 应用本身是 `ActivationPolicy::Accessory` + 打包时 `Info.plist` 的 `LSUIElement`：后台运行、无 Dock 图标。
 
 ## 目录

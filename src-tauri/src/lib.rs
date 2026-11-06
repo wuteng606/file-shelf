@@ -845,12 +845,12 @@ pub fn run() {
                     }
                 });
 
-            // 菜单栏图标：macOS 用模板图（纯黑 + alpha），系统按明暗自动反色，
-            // 比直接塞彩色 App 图标更贴原生；Windows 托盘仍用彩色图标。
+            // 菜单栏图标：品牌橙色的「文件 + 搁板」图形（透明底），
+            // 和 App 图标同一套形状，但在菜单栏里更轻、有颜色。
             #[cfg(target_os = "macos")]
             {
-                let img = tauri::image::Image::from_bytes(include_bytes!("../icons/tray-template.png"))?;
-                tray = tray.icon(img).icon_as_template(true);
+                let img = tauri::image::Image::from_bytes(include_bytes!("../icons/tray-color.png"))?;
+                tray = tray.icon(img).icon_as_template(false);
             }
             #[cfg(not(target_os = "macos"))]
             {
