@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>暂存架</title>
+<link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <section class="shelf" id="shelf">
+    <header class="hd" data-tauri-drag-region>
+      <div class="brand">
+        <svg viewBox="0 0 24 24" fill="none">
+          <g transform="rotate(-7 12 9.6)">
+            <rect x="8.3" y="3.9" width="8.1" height="10.6" rx="2.2" stroke="#fff" stroke-width="1.85"/>
+            <path d="M10.4 6.9h4.1M10.4 9.7h2.9" stroke="#fff" stroke-width="1.55" stroke-linecap="round"/>
+          </g>
+          <rect x="3.9" y="15.6" width="16.2" height="2.8" rx="1.4" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="title" data-tauri-drag-region>暂存架</div>
+      <span class="count" id="count">0</span>
+      <div class="hd-spacer" data-tauri-drag-region></div>
+      <button class="ibtn" id="settingsBtn" title="设置">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="3.1" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M12 3.2v2.2M12 18.6v2.2M4.7 7.9l1.9 1.1M17.4 15l1.9 1.1M4.7 16.1l1.9-1.1M17.4 9l1.9-1.1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </header>
+
+    <div class="list" id="list"></div>
+
+    <footer class="ft" data-tauri-drag-region>
+      <span id="summary">空</span>
+      <button class="clear" id="clearBtn">清空</button>
+    </footer>
+
+    <div class="dropcover" id="dropcover">
+      <div class="dbox">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        松开以暂存
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <div class="sheet" id="sheet">
+      <div class="sheet-hd">
+        <span>设置</span>
+        <button class="ibtn" id="closeSheet" title="完成">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="sheet-body">
+        <div class="field">
+          <div class="field-label">唤起快捷键</div>
+          <button class="keycap" id="keycap">⌥ ⌘ Space</button>
+          <div class="field-tip">点击后按下新的组合键，Esc 取消</div>
+        </div>
+
+        <div class="field row-field">
+          <div>
+            <div class="field-label">开机时启动</div>
+            <div class="field-tip">登录后静默启动，不弹出面板</div>
+          </div>
+          <button class="switch" id="autostartSwitch" role="switch" aria-checked="false"><i></i></button>
+        </div>
+
+        <div class="field">
+          <div class="field-label">外观</div>
+          <div class="segmented" id="themeSeg">
+            <button data-theme-value="auto">跟随系统</button>
+            <button data-theme-value="dark">深色</button>
+            <button data-theme-value="light">浅色</button>
+          </div>
+        </div>
+
+        <div class="sheet-foot">
+          <div class="about-row">
+            <span class="ver">暂存架 0.1.0</span>
+            <button class="link" id="openDataBtn">打开数据文件夹</button>
+          </div>
+          <div class="tip">只记录文件位置，移动或删除原文件不影响磁盘内容。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
