@@ -4,7 +4,7 @@
 [![CI](https://github.com/wuteng606/file-shelf/actions/workflows/ci.yml/badge.svg)](https://github.com/wuteng606/file-shelf/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
-一个桌面文件暂存架，支持 **macOS / Windows**。文件拖进来暂存，用完拖出去，只记录路径、不动磁盘上的文件。常驻托盘、快捷键唤起、全屏也压得住。
+一个桌面文件暂存架，支持 **macOS / Windows**（应用名 `FileShelf`，界面里叫「暂存架」）。文件拖进来暂存，用完拖出去，只记录路径、不动磁盘上的文件。常驻托盘、快捷键唤起、全屏也压得住。
 
 ![界面](./preview/hero.png)
 
@@ -41,13 +41,13 @@
 
 ## 安装
 
-**Windows**：到 [Releases](https://github.com/wuteng606/file-shelf/releases) 下载 `暂存架_*_x64-setup.exe`，双击安装。
+**Windows**：到 [Releases](https://github.com/wuteng606/file-shelf/releases) 下载 `FileShelf_*_x64-setup.exe`，双击安装。
 
-**macOS**：下载 `暂存架_*_universal.dmg`（Apple Silicon / Intel 通用），打开后把「暂存架」拖进「应用程序」。
+**macOS**：下载 `FileShelf_*_universal.dmg`（Apple Silicon / Intel 通用），打开后把 `FileShelf.app` 拖进「应用程序」。
 
 > 安装包未签名公证：
 > - Windows SmartScreen 提示「未知发布者」→「更多信息」→「仍要运行」。
-> - macOS 首次打开被拦下 → 右键 App →「打开」，或 `xattr -dr com.apple.quarantine "/Applications/暂存架.app"`。
+> - macOS 首次打开被拦下 → 右键 App →「打开」，或 `xattr -dr com.apple.quarantine "/Applications/FileShelf.app"`。
 
 ## 开发
 
@@ -60,7 +60,7 @@ npm run app:build    # 打包当前平台
 产物按平台自动选择：
 
 ```
-macOS:   src-tauri/target/release/bundle/macos/暂存架.app  +  dmg/暂存架_*.dmg
+macOS:   src-tauri/target/release/bundle/macos/FileShelf.app  +  dmg/FileShelf_*.dmg
 Windows: src-tauri/target/release/bundle/nsis/*.exe  +  msi/*.msi
 ```
 
